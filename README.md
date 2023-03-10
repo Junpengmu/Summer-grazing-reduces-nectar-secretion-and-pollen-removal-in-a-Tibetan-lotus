@@ -8,7 +8,7 @@ library(ggplot2)
 library(reshape2)
 mu<- read.csv("gf1.csv")
 reshape2::melt(mu,id.vars="tr")->df1
-write.csv(df1,"gf1-1.csv")  #另存为 f1-1.csv
+write.csv(df1,"gf1-1.csv")  # f1-1.csv
 
 
 ##figure
