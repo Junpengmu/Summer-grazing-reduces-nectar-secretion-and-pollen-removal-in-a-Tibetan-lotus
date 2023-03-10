@@ -28,24 +28,22 @@ a<-ggplot(mugg,aes(tr,value,fill=tr))+
   #geom_jitter(aes(group=as.factor(tr)),shape=21,color="green3", size=1.8, alpha=0.9,width = 0.2, height = 0.1)+
   labs(x=NULL,y=NULL)+ stat_summary(fun = "mean", geom = "point", shape =1,size = 2.0, color = "blue")+
   theme_classic()+
-  ##stat_compare_means( aes(label = ..p.signif..), label.x = , label.y = , size=4, color="black")+##多重比较
+  ##stat_compare_means( aes(label = ..p.signif..), label.x = , label.y = , size=4, color="black")+##
   scale_fill_prism(palette = "floral")
-  ## theme(plot.background = element_rect(fill = 'grey', colour = 'red'))##更改绘图的背景颜色
-  ## theme(panel.background = element_rect(fill = 'grey', colour = 'red'))##更改面板的背景颜色
-##分组
-fig<-a+facet_wrap(~variable,scales="free")+theme_test()+theme(axis.title.x =element_text(size=12),axis.text.x =element_text(size=12), axis.text.y =element_text(size=12),legend.text =element_text(size=12))+theme_bw() ###全框坐标轴,分组作图
+##
+fig<-a+facet_wrap(~variable,scales="free")+theme_test()+theme(axis.title.x =element_text(size=12),axis.text.x =element_text(size=12), axis.text.y =element_text(size=12),legend.text =element_text(size=12))+theme_bw() ###
 fig
 ggsave("fig.tiff",plot=fig1,width = 32, height = 21, units = "cm")
 ##加点
 
 
 ###Figure 2
-##回归图
+##
 library(ggplot2)
 library(ggpmisc)
 ##linetype = tr
 mu1 <- read.csv("gf2.csv")
-##第一幅图
+##
 sp1<-ggplot(mu1, aes(x=vrm, y=pr, color=pr)) + 
   geom_point()+
   facet_wrap(~tr, scales = "free") +
@@ -55,7 +53,7 @@ sp1<-ggplot(mu1, aes(x=vrm, y=pr, color=pr)) +
 
 a<-sp1+scale_color_gradientn(colours = rainbow(5))
 a
-##第二幅图
+##
 sp2<-ggplot(mu1, aes(x=nvm, y=vrm, color=vrm)) + 
   geom_point()+
   facet_wrap(~tr, scales = "free") +
@@ -65,7 +63,7 @@ sp2<-ggplot(mu1, aes(x=nvm, y=vrm, color=vrm)) +
 b<-sp2+scale_color_gradientn(colours = rainbow(5))
 b
 
-##第三幅图
+##
 sp3<-ggplot(mu1, aes(x=nvf, y=vrf, color=vrf)) + 
   geom_point()+facet_wrap(~tr, scales = "free") +
   geom_smooth(method=lm,level=0.95)+labs(title="(c)", x="nvf", y = "vrf",size=4)+ 
@@ -74,7 +72,7 @@ sp3<-ggplot(mu1, aes(x=nvf, y=vrf, color=vrf)) +
 c<-sp3+scale_color_gradientn(colours = rainbow(5))
 c
 
-##第四幅图
+##
 sp4<-ggplot(mu1, aes(x=nsc, y=nvm, color=nvm)) + 
   geom_point()+
   facet_wrap(~tr, scales = "free") +
@@ -84,7 +82,7 @@ sp4<-ggplot(mu1, aes(x=nsc, y=nvm, color=nvm)) +
 d<-sp4+scale_color_gradientn(colours = rainbow(5))
 d
 
-##第五幅图
+##
 sp5<-ggplot(mu1, aes(x=nsc, y=nvf, color=nvf)) + 
   geom_point()+facet_wrap(~tr, scales = "free") +
   geom_smooth(method=lm,level=0.95)+ labs(title="(e)", x="nsc", y = "nvf",size=4)+
@@ -93,7 +91,7 @@ sp5<-ggplot(mu1, aes(x=nsc, y=nvf, color=nvf)) +
 e<-sp5+scale_color_gradientn(colours = rainbow(5))
 e
 
-##第六幅图
+##
 sp6<-ggplot(mu1, aes(x=agb, y=nsc, color=nsc)) + 
   geom_point()+facet_wrap(~tr, scales = "free") +
   geom_smooth(method=lm,level=0.95)+labs(title="(f)", x="agb", y = "nsc",size=4)+
@@ -113,13 +111,13 @@ cowplot::plot_grid(a,b,c,d,e,f,nrow=3)
 
 ###Figure 3
 
-##回归图
+##
 library(ggplot2)
 library(ggpmisc)
 
 ##linetype = tr
 mu1 <- read.csv("gf2.csv")
-##第一幅图
+##
 sp1<-ggplot(mu1, aes(x=vrf, y=ssr, color=ssr)) + 
   geom_point()+
   facet_wrap(~tr, scales = "free") +
@@ -133,7 +131,7 @@ a
 
 ##linetype = tr
 mu1 <- read.csv("gf6.csv")
-##第二幅图
+##
 sp2<-ggplot(mu1, aes(x=vrf, y=ssr, color=ssr)) + 
   geom_point()+
   facet_wrap(~tr, scales = "free") +
@@ -149,7 +147,7 @@ a/b
 
 
 ###Figure 4
-##绘制柱状图
+##
 library(ggplot2)
 library(reshape2)
 mu<- read.csv("gf5a.csv")
@@ -169,7 +167,7 @@ p1<-p0 + scale_fill_brewer(palette="Greens",direction=-1) + theme_minimal()
 a<-p1+coord_flip()
 a
 
-##绘制百分比图
+##
 library(ggplot2)
 library(reshape2)
 mu<- read.csv("gf5b.csv")
@@ -226,21 +224,19 @@ b<-ggplot(mul,aes(tr,value,fill=tr))+
   ##stat_compare_means( aes(label = ..p.signif..), label.x = , label.y = , size=4, color="black")+##多重比较
   #scale_fill_prism(palette = "floral")
   scale_fill_brewer(palette = "Greens",direction=-1)
-## theme(plot.background = element_rect(fill = 'grey', colour = 'red'))##更改绘图的背景颜色
-## theme(panel.background = element_rect(fill = 'grey', colour = 'red'))##更改面板的背景颜色
-##分组
+##
 fig3<-b+facet_wrap(~variable,scales="free")+theme_test()+theme(axis.title.x =element_text(size=12),axis.text.x =element_text(size=12), axis.text.y =element_text(size=12),legend.text =element_text(size=12))+theme_bw() ###全框坐标轴,分组作图
 fig3
 ###ggsave("fig3.tiff",plot=fig1,width = 32, height = 21, units = "cm")
 
 
 ###Figure 6
-##回归图
+##
 library(ggplot2)
 library(ggpmisc)
 ##linetype = tr
 mu1 <- read.csv("gf6.csv")
-##第一幅图
+#
 sp1<-ggplot(mu1, aes(x=vrm, y=pr, color=pr)) + 
   geom_point()+
   facet_wrap(~tr, scales = "free") +
@@ -250,7 +246,7 @@ sp1<-ggplot(mu1, aes(x=vrm, y=pr, color=pr)) +
 
 a<-sp1+scale_color_gradientn(colours = rainbow(5))
 a
-##第二幅图
+##
 sp2<-ggplot(mu1, aes(x=nvm, y=vrm, color=vrm)) + 
   geom_point()+
   facet_wrap(~tr, scales = "free") +
@@ -260,7 +256,7 @@ sp2<-ggplot(mu1, aes(x=nvm, y=vrm, color=vrm)) +
 b<-sp2+scale_color_gradientn(colours = rainbow(5))
 b
 
-##第三幅图
+##
 sp3<-ggplot(mu1, aes(x=nvf, y=vrf, color=vrf)) + 
   geom_point()+facet_wrap(~tr, scales = "free") +
   geom_smooth(method=lm,level=0.95)+labs(title="(c)", x="nvf", y = "vrf",size=4)+ 
@@ -269,7 +265,7 @@ sp3<-ggplot(mu1, aes(x=nvf, y=vrf, color=vrf)) +
 c<-sp3+scale_color_gradientn(colours = rainbow(5))
 c
 
-##第四幅图
+##
 sp4<-ggplot(mu1, aes(x=nsc, y=nvm, color=nvm)) + 
   geom_point()+
   facet_wrap(~tr, scales = "free") +
@@ -279,7 +275,7 @@ sp4<-ggplot(mu1, aes(x=nsc, y=nvm, color=nvm)) +
 d<-sp4+scale_color_gradientn(colours = rainbow(5))
 d
 
-##第五幅图
+##
 sp5<-ggplot(mu1, aes(x=nsc, y=nvf, color=nvf)) + 
   geom_point()+facet_wrap(~tr, scales = "free") +
   geom_smooth(method=lm,level=0.95)+ labs(title="(e)", x="nsc", y = "nvf",size=4)+
@@ -288,7 +284,7 @@ sp5<-ggplot(mu1, aes(x=nsc, y=nvf, color=nvf)) +
 e<-sp5+scale_color_gradientn(colours = rainbow(5))
 e
 
-##第六幅图
+##
 sp6<-ggplot(mu1, aes(x=agb, y=nsc, color=nsc)) + 
   geom_point()+facet_wrap(~tr, scales = "free") +
   geom_smooth(method=lm,level=0.95)+labs(title="(f)", x="agb", y = "nsc",size=4)+
@@ -309,7 +305,7 @@ cowplot::plot_grid(a,b,c,d,e,f,nrow=3)
 ###Figure S3  (Ranked Cross-Correlations of summer and winter grazing)
 
 library(lares)
-windowsFonts(RMN=windowsFont("Times New Roman"))###  修改字体
+windowsFonts(RMN=windowsFont("Times New Roman"))###  
 
 ## Fig 2a  (correlation of flower traits for sgp)
 nf2a<-read.csv("fs2a.csv")##data
